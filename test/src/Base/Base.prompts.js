@@ -31,45 +31,28 @@ function setup(fixture, context) {
     return context;
 }
 
-test('Server: Set the props to the prompts value', t => {
-    const fixture = {server: 'express'};
+test('Set the props to the prompts value', t => {
+    const fixture = {server: 'express', client: 'angular1', css: 'less', modules: 'bower'};
     context = setup(fixture, context);
-    context.serverPrompts();
+    context.bitmatePrompts();
     t.deepEqual(context.props, fixture);
 });
 
-test('Client: Set the props to the prompts value', t => {
-    context.props = {};
-    const fixture = {client: 'angular1'};
+test('Exclude a category of options', t => {
+    context.props = null;
+    const fixture = {client: 'angular1', css: 'less', modules: 'bower'};
     context = setup(fixture, context);
-    context.clientPrompts();
+    context.bitmatePrompts('server');
     t.deepEqual(context.props, fixture);
 });
 
-test('Server: Clear the props if props is not an object', t => {
+test('Clear the props if props is not an object', t => {
     context.props = null;
-    context.options.server = 'express';
     context.prompt = () => {
         return {
-            then: cb => cb({
-                server: 'express'
-            })
+            then: cb => cb()
         };
     };
-    context.serverPrompts();
-    t.deepEqual(context.props, context.options);
-});
-
-test('Client: Clear props if props is not an object', t => {
-    context.props = null;
-    context.options.client = 'angular1';
-    context.prompt = () => {
-        return {
-            then: cb => cb({
-                client: 'angular1'
-            })
-        };
-    };
-    context.clientPrompts();
+    context.bitmatePrompts();
     t.deepEqual(context.props, context.options);
 });
