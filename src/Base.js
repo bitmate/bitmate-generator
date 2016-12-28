@@ -97,6 +97,9 @@ module.exports = generators.Base.extend({
     },
 
     mergeJson: Utils.mergeJson,
+    updateJson: Utils.updateJson,
+    replaceInFileWithTemplate: Utils.replaceInFileWithTemplate,
+    replaceInFiles: Utils.replaceInFiles,
     copyTemplate: Utils.copyTemplate,
     getExtensions: Utils.getExtensions
 

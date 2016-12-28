@@ -1,6 +1,8 @@
 'use strict';
 
 const _ = require('lodash');
+const ejs = require('ejs');
+const minimatch = require('minimatch');
 const json = require('./json2js').json;
 
 exports.mergeJson = function (fileName, newContent) {
@@ -13,6 +15,39 @@ exports.mergeJson = function (fileName, newContent) {
     });
 
     this.fs.writeJSON(this.destinationPath(fileName), content);
+};
+
+exports.updateJson = function updateJson(fileName, update) {
+    const content = this.fs.readJSON(this.destinationPath(fileName), {});
+
+    const newContent = update(content);
+
+    this.fs.writeJSON(this.destinationPath(fileName), newContent);
+};
+
+exports.replaceInFileWithTemplate = function replaceInFileWithTemplate(templateFileName, destinationFileName, regex, templateScope) {
+    const scope = Object.assign({
+        extensions: exports.getExtensions(this.options)
+    }, this.options, templateScope);
+
+    const originalContent = this.fs.read(this.destinationPath(destinationFileName), {});
+    let addContent = this.fs.read(this.templatePath(templateFileName), {});
+    addContent = addContent.replace(/([\s\S]*)$/, '$1');
+    const processedAddContent = ejs.render(addContent, scope);
+
+    const newContent = originalContent.replace(regex, processedAddContent);
+
+    this.fs.write(this.destinationPath(destinationFileName), newContent);
+};
+
+exports.replaceInFiles = function replaceInFiles(destinationFiles, transform) {
+    this.fs.store.each(file => {
+        if (minimatch(file.path, this.destinationPath(destinationFiles))) {
+            const originalContent = this.fs.read(file.path, {});
+            const newContent = transform(originalContent, file.path);
+            this.fs.write(file.path, newContent);
+        }
+    });
 };
 
 exports.getExtensions = function (props) {
