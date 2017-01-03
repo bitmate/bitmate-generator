@@ -21,6 +21,33 @@ test('Check .babelrc is not renamed', t => {
   t.is(files.destination, '../../test/assets/.babelrc');
 });
 
+let jsFiles;
+
+test.beforeEach(() => {
+  jsFiles = {
+    template: 'src/file.js',
+    destination: 'src/file.js'
+  };
+});
+
+test(`should rename files with js of 'babel'`, t => {
+  require('../../../src/Utils').renameFiles.call(context, jsFiles, {js: 'babel'});
+  t.is(jsFiles.template, 'src/file.babel');
+  t.is(jsFiles.destination, 'src/file.js');
+});
+
+test(`should rename files with js of 'typescript' and framework different of 'react'`, t => {
+  require('../../../src/Utils').renameFiles.call(context, jsFiles, {js: 'typescript', client: 'angular1'});
+  t.is(jsFiles.template, 'src/file.ts');
+  t.is(jsFiles.destination, 'src/file.ts');
+});
+
+test(`should rename files with js of 'typescript' and framework of 'react'`, t => {
+  require('../../../src/Utils').renameFiles.call(context, jsFiles, {js: 'typescript', client: 'react'});
+  t.is(jsFiles.template, 'src/file.tsx');
+  t.is(jsFiles.destination, 'src/file.tsx');
+});
+
 let cssFiles;
 
 test.beforeEach(() => {

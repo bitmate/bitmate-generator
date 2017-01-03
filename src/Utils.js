@@ -87,6 +87,20 @@ exports.copyTemplate = function (templateFileName, destinationFileName, template
 };
 
 exports.renameFiles = function (files, props) {
+  if (/^src\/[^\.].*\.js$/.test(files.template)) {
+    if (props.js === 'babel') {
+      files.template = files.template.replace(/\.js$/, '.babel');
+    }
+    if (props.js === 'typescript') {
+      let ext = '.ts';
+      if (props.client === 'react') {
+        ext = '.tsx';
+      }
+      files.template = files.template.replace(/\.js$/, ext);
+      files.destination = files.destination.replace(/\.js$/, ext);
+    }
+  }
+
   if (/^.*\.(css)$/.test(files.template)) {
     if (props.css === 'scss') {
       files.template = files.template.replace(/\.css$/, '.scss');

@@ -35,6 +35,7 @@ module.exports = generators.Base.extend({
       message: 'Which JavaScript framework do you want?',
       choices: [
         {name: 'Angular 1', value: 'angular1'},
+        {name: 'React', value: 'react'},
         {name: 'None', value: 'none'}
       ]
     }, {
@@ -43,7 +44,7 @@ module.exports = generators.Base.extend({
       name: 'runner',
       message: 'Which task runner do you want?',
       choices: [
-        {name: 'Grunt', value: 'grunt'}
+        {name: 'Gulp', value: 'gulp'}
       ]
     }, {
       when: !this.options.modules && this.options.client !== 'none',
@@ -61,8 +62,7 @@ module.exports = generators.Base.extend({
       category: 'client',
       message: 'Which HTML template engine would you want?',
       choices: [
-        {name: 'HTML', value: 'html'},
-        {name: 'PUG', value: 'pug'}
+        {name: 'HTML', value: 'html'}
       ]
     }, {
       when: !this.options.css && this.options.client !== 'none',
