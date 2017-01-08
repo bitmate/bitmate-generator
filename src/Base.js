@@ -14,6 +14,7 @@ module.exports = generators.Base.extend({
     this.option('modules', {type: String, required: false});
     this.option('css', {type: String, required: false});
     this.option('html', {type: String, required: false});
+    this.option('js', {type: String, required: false});
   },
 
   bitmatePrompts(exclude) {
@@ -25,7 +26,8 @@ module.exports = generators.Base.extend({
       category: 'server',
       message: 'Which server framework do you want?',
       choices: [
-        {name: 'ExpressJS', value: 'express'}
+        {name: 'ExpressJS', value: 'express'},
+        {name: 'None', value: 'none'}
       ]
     }, {
       when: !this.options.client,

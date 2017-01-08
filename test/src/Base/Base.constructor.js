@@ -16,9 +16,9 @@ test.before(() => {
   require('../../../src/Base');
 });
 
-test(`Call 'this.option' 6 times with correct parameters`, () => {
+test(`Call 'this.option' 7 times with correct parameters`, () => {
   context.option = () => {};
   const spy = chai.spy.on(context, 'option');
   context.constructor();
-  expect(spy).to.have.been.called.exactly(6);
+  expect(spy).to.have.been.called.exactly(7);
 });
