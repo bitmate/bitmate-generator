@@ -87,7 +87,7 @@ exports.copyTemplate = function (templateFileName, destinationFileName, template
 };
 
 exports.renameFiles = function (files, props) {
-  if (/^src\/[^\.].*\.js$/.test(files.template)) {
+  if (/^client\/[^\.].*\.js$/.test(files.template)) {
     if (props.js === 'babel') {
       files.template = files.template.replace(/\.js$/, '.babel');
     }
