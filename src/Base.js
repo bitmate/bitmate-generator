@@ -85,7 +85,8 @@ module.exports = generators.Base.extend({
       category: 'client',
       message: 'Which JavaScript preprocessor do you want?',
       choices: [
-        {name: 'Babel', value: 'babel'}
+        {name: 'Babel', value: 'babel'},
+        {name: 'Plain JavaScript', value: 'js'}
       ]
     }];
 
