@@ -76,6 +76,13 @@ exports.copyTemplate = function (templateFileName, destinationFileName, template
     template: templateFileName,
     destination: destinationFileName
   };
+  if (/^.*\.(ico|jpg|png)$/.test(files.template)) {
+    return this.fs.copy(
+      this.templatePath(files.template),
+      this.destinationPath(files.destination),
+      scope
+    );
+  }
 
   exports.renameFiles(files, scope);
 

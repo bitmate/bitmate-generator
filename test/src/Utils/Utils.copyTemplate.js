@@ -29,6 +29,11 @@ test('Copy file.js', t => {
   t.true(context.copyTpl[context.templatePath('../test/assets/templates/file.js')].length > 0);
 });
 
+test('Copy image.ico', t => {
+  Utils.copyTemplate.call(context, '../test/assets/image.ico', '../test/assets/templates/image.ico');
+  t.true(context.copy[context.templatePath('../test/assets/templates/image.ico')].length > 0);
+});
+
 test.after(() => {
   Utils.renameFiles = renameFiles;
 });

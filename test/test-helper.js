@@ -3,7 +3,7 @@ const fs = require('fs-extra');
 
 module.exports = {
   defaults() {
-    return {fs: {}, writeJSON: {}, write: {}, copyTpl: {}};
+    return {fs: {}, writeJSON: {}, write: {}, copyTpl: {}, copy: {}};
   },
   mock(options) {
     const context = Object.assign({}, this.defaults(), options);
@@ -12,6 +12,9 @@ module.exports = {
     };
     context.fs.write = (file, content) => {
       context.write[file] = content;
+    };
+    context.fs.copy = (template, destination) => {
+      context.copy[destination] = fs.readFileSync(template, 'utf8');
     };
     context.fs.copyTpl = (template, destination) => {
       context.copyTpl[destination] = fs.readFileSync(template, 'utf8');
