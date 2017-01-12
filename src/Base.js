@@ -55,7 +55,8 @@ module.exports = generators.Base.extend({
       category: 'client',
       message: 'Which module management do you want?',
       choices: [
-        {name: 'Bower', value: 'bower'}
+        {name: 'Bower', value: 'bower'},
+        {name: 'Webpack', value: 'webpack'}
       ]
     }, {
       when: !this.options.html && this.options.client !== 'none',
