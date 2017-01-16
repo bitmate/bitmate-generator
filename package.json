@@ -9,7 +9,6 @@
   },
   "author": "BitMate",
   "license": "UNLICENSED",
-  "private": true,
   "dependencies": {
     "ejs": "^2.3.4",
     "falafel": "^2.0.0",
@@ -56,5 +55,8 @@
   },
   "eslintConfig": {
     "extends": "xo-space/esnext"
+  },
+  "publishConfig": {
+    "registry": "http://sinopia.bitmate.io/"
   }
 }
