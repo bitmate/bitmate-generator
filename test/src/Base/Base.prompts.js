@@ -46,6 +46,13 @@ test('Exclude a category of options', t => {
   t.deepEqual(context.props, fixture);
 });
 
+test('Set the props for Angular2', t => {
+  const fixture = {server: 'none', client: 'angular2', css: 'less', modules: 'webpack'};
+  context = setup(fixture, context);
+  context.bitmatePrompts();
+  t.deepEqual(context.props, fixture);
+});
+
 test('Clear the props if props is not an object', t => {
   context.props = null;
   context.prompt = () => {

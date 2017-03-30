@@ -37,6 +37,7 @@ module.exports = generators.Base.extend({
       message: 'Which JavaScript framework do you want?',
       choices: [
         {name: 'Angular 1', value: 'angular1'},
+        {name: 'Angular 2', value: 'angular2'},
         {name: 'React', value: 'react'},
         {name: 'None', value: 'none'}
       ]
@@ -54,10 +55,15 @@ module.exports = generators.Base.extend({
       name: 'modules',
       category: 'client',
       message: 'Which module management do you want?',
-      choices: [
-        {name: 'Bower', value: 'bower'},
-        {name: 'Webpack', value: 'webpack'}
-      ]
+      choices(responses) {
+        const choices = [
+          {name: 'Webpack', value: 'webpack'}
+        ];
+        if (responses.client !== 'angular2' && responses.client !== 'angular2') {
+          choices.push({name: 'Bower', value: 'bower'});
+        }
+        return choices;
+      }
     }, {
       when: !this.options.html && this.options.client !== 'none',
       type: 'list',
