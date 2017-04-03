@@ -1,7 +1,8 @@
 {
-  "name": "bitmate-generator",
+  "name": "@oligibson/bitmate-generator",
   "version": "1.0.2",
   "description": "Base generator for BitMate Generators",
+  "homepage": "https://bitmate.io/",
   "main": "index.js",
   "engines": {
     "node": ">=6.0.0",
@@ -55,8 +56,5 @@
   },
   "eslintConfig": {
     "extends": "xo-space/esnext"
-  },
-  "publishConfig": {
-    "registry": "http://sinopia.bitmate.io/"
   }
 }
