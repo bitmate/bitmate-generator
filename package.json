@@ -1,6 +1,6 @@
 {
   "name": "@oligibson/bitmate-generator",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Base generator for BitMate Generators",
   "homepage": "https://bitmate.io/",
   "main": "index.js",
